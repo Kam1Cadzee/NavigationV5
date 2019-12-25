@@ -1,46 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationNativeContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import RootStack from './src/Stacks/RootStack';
+import SecondStack from './src/Stacks/SecondStack';
 
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-
-function DetailsScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
     <NavigationNativeContainer>
-      <Stack.Navigator initialRouteName="Details">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            title: 'Home 2',
-          }}
-        />
-        <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
-          options={{
-            title: 'Details 2',
-          }}
-        />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="First" component={RootStack} />
+        <Tab.Screen name="Second" component={SecondStack} />
+      </Tab.Navigator>
     </NavigationNativeContainer>
   );
 };
